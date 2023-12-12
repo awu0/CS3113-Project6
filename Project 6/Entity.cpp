@@ -11,6 +11,7 @@
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
+#include "Utility.h"
 #include "Entity.h"
 
 Entity::Entity()
@@ -171,7 +172,7 @@ void Entity::update(float delta_time, Entity* player, Entity* objects, int objec
     }
 
     m_velocity.x = m_movement.x * m_speed;
-    m_velocity += m_acceleration * delta_time;
+    m_velocity.y = m_movement.y * m_speed;
 
     // We make two calls to our check_collision methods, one for the collidable objects and one for
     // the map.
@@ -186,11 +187,10 @@ void Entity::update(float delta_time, Entity* player, Entity* objects, int objec
     // activate AI after checking for collisions so the enemies can jump
     if (m_entity_type == ENEMY) ai_activate(player);
 
-    if (m_is_jumping)
-    {
-        m_is_jumping = false;
-
-        m_velocity.y += m_jumping_power;
+    if (m_entity_type == BULLET) {
+        if (m_collided_bottom || m_collided_top || m_collided_left || m_collided_right) {
+            deactivate();
+        }
     }
 
     m_model_matrix = glm::mat4(1.0f);
@@ -349,6 +349,17 @@ void Entity::render(ShaderProgram* program)
     glEnableVertexAttribArray(program->get_tex_coordinate_attribute());
 
     glDrawArrays(GL_TRIANGLES, 0, 6);
+
+    const char FONT_FILEPATH[] = "assets/font1.png";
+    GLuint g_font_id = Utility::load_texture(FONT_FILEPATH);
+
+    // draw hp above the sprite
+    if (health > 0) {
+        std::string healthNum = std::to_string(health);
+
+        glm::vec3 text_position = glm::vec3(m_position.x - 0.4f, m_position.y + 0.7, 0);
+        Utility::draw_text(program, g_font_id, healthNum, 0.25, 0.01f, text_position);
+    }
 
     glDisableVertexAttribArray(program->get_position_attribute());
     glDisableVertexAttribArray(program->get_tex_coordinate_attribute());

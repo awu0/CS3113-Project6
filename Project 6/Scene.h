@@ -21,6 +21,7 @@ struct GameState
     Map    *map;
     Entity *player;
     Entity *enemies;
+    Entity *bullets;
 
     Mix_Music *bgm;
     Mix_Chunk *jump_sfx;
@@ -30,6 +31,8 @@ struct GameState
 
     int next_scene_id;
 
+    int bullets_shot = 0;
+
     bool gameover = false;
     bool won = false;
     bool titleScreen = true;
@@ -38,6 +41,7 @@ struct GameState
 class Scene {
 public:
     int m_number_of_enemies = 1;
+    int m_number_of_bullets = 100;
 
     GameState m_state;
 

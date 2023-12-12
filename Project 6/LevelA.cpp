@@ -20,6 +20,7 @@ unsigned int LEVELA_DATA[] =
 LevelA::~LevelA()
 {
     delete [] m_state.enemies;
+    delete [] m_state.bullets;
     delete    m_state.player;
     delete    m_state.map;
     Mix_FreeChunk(m_state.jump_sfx);
@@ -44,10 +45,10 @@ void LevelA::initialise()
     // Walking
     m_state.player->m_walking[m_state.player->LEFT] = new int[3]{12, 13, 14};
     m_state.player->m_walking[m_state.player->RIGHT] = new int[3]{21, 22, 23};
-    m_state.player->m_walking[m_state.player->UP] = new int[3]{3, 4, 5};
-    // m_state.player->m_walking[m_state.player->DOWN] = new int[4]{0, 1, 2, 3};
+    m_state.player->m_walking[m_state.player->UP] = new int[3]{30, 31, 32};
+    m_state.player->m_walking[m_state.player->DOWN] = new int[3]{3, 4, 5};
 
-    m_state.player->m_animation_indices = m_state.player->m_walking[m_state.player->UP];
+    m_state.player->m_animation_indices = m_state.player->m_walking[m_state.player->DOWN];
     m_state.player->m_animation_time = 0.0f;
     m_state.player->m_animation_frames = 3;
     m_state.player->m_animation_index = 0;
@@ -72,6 +73,9 @@ void LevelA::initialise()
     m_state.enemies[0].set_movement(glm::vec3(0.0f));
     m_state.enemies[0].set_speed(1.0f);
     m_state.enemies[0].set_acceleration(glm::vec3(0.0f, -9.81f, 0.0f));
+
+    // keep 100 spaces for bullets
+    m_state.bullets = new Entity[BULLET_COUNT];
 
     /**
      BGM and SFX
@@ -100,6 +104,9 @@ void LevelA::update(float delta_time)
     for (int i = 0; i < ENEMY_COUNT; i++)
         m_state.enemies[i].update(delta_time, m_state.player, NULL, 0, m_state.map);
 
+    for (int i = 0; i < m_state.bullets_shot; i++)
+        m_state.bullets[i].update(delta_time, NULL, NULL, 0, m_state.map);
+
     if (m_state.player->get_position().x > 14.8f) m_state.next_scene_id = 2;
 }
 
@@ -110,4 +117,7 @@ void LevelA::render(ShaderProgram *program)
 
     for (int i = 0; i < ENEMY_COUNT; i++)
         m_state.enemies[i].render(program);
+
+    for (int i = 0; i < m_state.bullets_shot; i++)
+        m_state.bullets[i].render(program);
 }
