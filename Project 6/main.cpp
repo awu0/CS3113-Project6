@@ -205,9 +205,10 @@ void process_input()
 
             case SDLK_SPACE:
                 // Shoot
-                if (g_current_scene->m_state.bullets_shot != 100)
+                if (g_current_scene->m_state.bullets_shot < g_current_scene->m_number_of_bullets && g_current_scene->m_state.shooting_allowed) {
                     createBullet();
-                Mix_PlayChannel(-1, g_current_scene->m_state.jump_sfx, 0);
+                    Mix_PlayChannel(-1, g_current_scene->m_state.jump_sfx, 0);
+                }
                 break;
 
             case SDLK_RETURN:
@@ -279,7 +280,6 @@ void update()
         EntityType collided_with = g_current_scene->m_state.player->collided_with;
 
         // if (g_is_colliding_bottom == false && g_current_scene->m_state.player->m_collided_bottom) g_effects->start(SHAKE, 1.0f);
-        g_is_colliding_bottom = g_current_scene->m_state.player->m_collided_bottom;
 
         if (collided_with == ENEMY)
         {
@@ -314,9 +314,13 @@ void render()
     double playerPosX = g_current_scene->m_state.player->get_position().x;
     double playerPosY = g_current_scene->m_state.player->get_position().y;
 
-    glm::vec3 text_position = glm::vec3(playerPosX - 4.7f, playerPosY + 3.2f, 0);
-    std::string bulletNum = std::to_string(100 - g_current_scene->m_state.bullets_shot);
+    glm::vec3 text_position = glm::vec3(playerPosX - 4.7f, playerPosY + 3.5f, 0);
+    std::string bulletNum = std::to_string(g_current_scene->m_number_of_bullets - g_current_scene->m_state.bullets_shot);
     Utility::draw_text(&g_shader_program, g_font_id, "Bullets: " + bulletNum, 0.3, 0.005f, text_position);
+
+    std::string enemiesNum = std::to_string(g_current_scene->number_of_enemies_left());
+    glm::vec3 text_position2 = glm::vec3(playerPosX - 4.7f, playerPosY + 3.1f, 0);
+    Utility::draw_text(&g_shader_program, g_font_id, "Enemies left: " + enemiesNum, 0.3, 0.005f, text_position2);
 
     // game over
     if (g_current_scene->m_state.gameover && !g_current_scene->m_state.won)

@@ -31,6 +31,7 @@ struct GameState
 
     int next_scene_id;
 
+    bool shooting_allowed = true;
     int bullets_shot = 0;
 
     bool gameover = false;
@@ -52,4 +53,5 @@ public:
     GameState const get_state() const { return m_state; }
 
     void do_gameover(); // restart from beginning of scene
+    virtual int number_of_enemies_left();
 };

@@ -19,6 +19,8 @@ void TitleScene::initialise()
 {
     m_state.next_scene_id = -1;
 
+    m_state.shooting_allowed = false;
+
     GLuint map_texture_id = Utility::load_texture("assets/tilemap.png");
     m_state.map = new Map(LEVEL_WIDTH, LEVEL_HEIGHT, TITLESCENE_DATA, map_texture_id, 1.0f, 16, 7);
 

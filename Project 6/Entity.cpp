@@ -90,6 +90,10 @@ void Entity::ai_activate(Entity* player)
         ai_jump(player);
         break;
 
+    case STALKER:
+        ai_stalk(player);
+        break;
+
     default:
         break;
     }
@@ -141,6 +145,26 @@ void Entity::ai_jump(Entity* player)
     }
 }
 
+void Entity::ai_stalk(Entity* player)
+{
+    if (m_position.x > player->get_position().x)
+    {
+        m_movement.x = -1.0f;
+    }
+    else
+    {
+        m_movement.x = 1.0f;
+    }
+
+    if (m_position.y > player->get_position().y)
+    {
+        m_movement.y = -1.0f;
+    }
+    else
+    {
+        m_movement.y = 1.0f;
+    }
+}
 
 void Entity::update(float delta_time, Entity* player, Entity* objects, int object_count, Map* map)
 {

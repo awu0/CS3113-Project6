@@ -12,7 +12,8 @@ enum AIType
 {
     WALKER,
     GUARD,
-    JUMPER
+    JUMPER,
+    STALKER
 };
 enum AIState
 {
@@ -138,6 +139,7 @@ public:
     void ai_walk();
     void ai_guard(Entity *player);
     void ai_jump(Entity *player);
+    void ai_stalk(Entity* player);
 
     void activate() { m_is_active = true; };
     void deactivate()
@@ -160,6 +162,7 @@ public:
     float const get_speed() const { return m_speed; };
     int const get_width() const { return m_width; };
     int const get_height() const { return m_height; };
+    bool const get_is_active() const { return m_is_active; }
 
     // ————— SETTERS ————— //
     void const set_entity_type(EntityType new_entity_type) { m_entity_type = new_entity_type; };

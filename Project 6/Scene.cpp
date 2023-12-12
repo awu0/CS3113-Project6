@@ -5,3 +5,7 @@ void Scene::do_gameover() {
 
     m_state.gameover = false;
 }
+
+int Scene::number_of_enemies_left() {
+    return 0;
+}
