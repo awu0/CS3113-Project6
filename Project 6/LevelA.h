@@ -3,7 +3,7 @@
 class LevelA : public Scene {
 public:
     int ENEMY_COUNT = 1;
-    int BULLET_COUNT = 100; // keep only 100 bullets in memory
+    int BULLET_COUNT = m_number_of_bullets;
 
     ~LevelA();
 

@@ -105,7 +105,7 @@ void LevelA::update(float delta_time)
         m_state.enemies[i].update(delta_time, m_state.player, NULL, 0, m_state.map);
 
     for (int i = 0; i < m_state.bullets_shot; i++)
-        m_state.bullets[i].update(delta_time, NULL, NULL, 0, m_state.map);
+        m_state.bullets[i].update(delta_time, NULL, m_state.enemies, ENEMY_COUNT, m_state.map);
 
     if (m_state.player->get_position().x > 14.8f) m_state.next_scene_id = 2;
 }

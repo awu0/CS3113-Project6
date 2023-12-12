@@ -191,7 +191,14 @@ void Entity::update(float delta_time, Entity* player, Entity* objects, int objec
         if (m_collided_bottom || m_collided_top || m_collided_left || m_collided_right) {
             deactivate();
         }
+
+        // reduce enemy HP
+        if (collided_with == ENEMY) {
+            collided_object->health -= 10;
+        }
     }
+
+    if (health <= 0) deactivate();
 
     m_model_matrix = glm::mat4(1.0f);
     m_model_matrix = glm::translate(m_model_matrix, m_position);
