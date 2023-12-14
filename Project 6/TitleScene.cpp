@@ -101,14 +101,8 @@ void TitleScene::render(ShaderProgram *program)
 
     glm::vec3 text_position = glm::vec3(playerPosX - 2.5f, -2.0f, 0);
     glm::vec3 text_position2 = glm::vec3(playerPosX - 1.5f, -2.7f, 0);
-    glm::vec3 text_position3 = glm::vec3(playerPosX - 3.0f, -4.0f, 0);
-    glm::vec3 text_position4 = glm::vec3(playerPosX - 3.0f, -4.5f, 0);
-    glm::vec3 text_position5 = glm::vec3(playerPosX - 3.0f, -5.0f, 0);
-    glm::vec3 text_position6 = glm::vec3(playerPosX - 4.0f, -6.0f, 0);
+    glm::vec3 text_position3 = glm::vec3(playerPosX - 3.0f, -1.0f, 0);
     Utility::draw_text(program, g_font_id, "Press ENTER", 0.5, 0.01f, text_position);
     Utility::draw_text(program, g_font_id, "to Start", 0.5, 0.01f, text_position2);
-    Utility::draw_text(program, g_font_id, "Reach the right to win", 0.3, 0.01f, text_position3);
-    Utility::draw_text(program, g_font_id, "Stomp the enemies' heads", 0.3, 0.01f, text_position4);
-    Utility::draw_text(program, g_font_id, "Otherwise you die", 0.3, 0.01f, text_position5);
-    Utility::draw_text(program, g_font_id, "MORE CATS JUMPING", 0.5, 0.01f, text_position6);
+    Utility::draw_text(program, g_font_id, "CATS AND RATS", 0.5, 0.01f, text_position3);
 }

@@ -9,8 +9,8 @@ unsigned int LEVELA_DATA[] =
     9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
     9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
     9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
-    9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
-    9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0, 0,85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0, 0,101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
     9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
     9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
     9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
@@ -79,7 +79,7 @@ void LevelA::initialise()
 
     m_state.enemies = new Entity[m_number_of_enemies];
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
         m_state.enemies[i].set_entity_type(ENEMY);
         m_state.enemies[i].set_ai_type(STALKER);
         m_state.enemies[i].set_ai_state(IDLE);
@@ -89,7 +89,7 @@ void LevelA::initialise()
         m_state.enemies[i].set_speed( (rand() % 100) / 100.0f * 2.0f );
     }
 
-    for (int i = 3; i < m_number_of_enemies; i++)
+    for (int i = 2; i < m_number_of_enemies; i++)
     {
         m_state.enemies[i].set_entity_type(ENEMY);
         m_state.enemies[i].set_ai_type(STALKER);

@@ -1,7 +1,7 @@
 /**
  * Author: Aaron Wu
- * Assignment: Platformer
- * Date due: 2023-12-02, 11:59pm
+ * Assignment: Cats and Rats
+ * Date due: 2023-12-15, 11:59pm
  * I pledge that I have completed this assignment without
  * collaborating with anyone else, in conformance with the
  * NYU School of Engineering Policies and Procedures on
@@ -80,6 +80,10 @@ float g_accumulator = 0.0f;
 
 bool g_is_colliding_bottom = false;
 
+float time_per_shot = 0.5f; // in seconds
+float bullet_time_accumulated = 0.0f; // used to calculate time between the last shot
+bool can_shoot = true;
+
 // ––––– GENERAL FUNCTIONS ––––– //
 void switch_to_scene(Scene *scene)
 {
@@ -132,7 +136,7 @@ void createBullet() {
 void initialise()
 {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
-    g_display_window = SDL_CreateWindow("MORE CATS JUMPING AROUND",
+    g_display_window = SDL_CreateWindow("CATS AND RATS",
                                         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                         WINDOW_WIDTH, WINDOW_HEIGHT,
                                         SDL_WINDOW_OPENGL);
@@ -205,8 +209,9 @@ void process_input()
 
             case SDLK_SPACE:
                 // Shoot
-                if (g_current_scene->m_state.bullets_shot < g_current_scene->m_number_of_bullets && g_current_scene->m_state.shooting_allowed) {
+                if (g_current_scene->m_state.bullets_shot < g_current_scene->m_number_of_bullets && g_current_scene->m_state.shooting_allowed && can_shoot) {
                     createBullet();
+                    can_shoot = false;
                     Mix_PlayChannel(-1, g_current_scene->m_state.jump_sfx, 0);
                 }
                 break;
@@ -262,6 +267,12 @@ void update()
 
     delta_time += g_accumulator;
 
+    bullet_time_accumulated += delta_time;
+    if (bullet_time_accumulated >= time_per_shot) {
+        can_shoot = true;
+        bullet_time_accumulated = 0.0f;
+    }
+
     if (delta_time < FIXED_TIMESTEP)
     {
         g_accumulator = delta_time;
@@ -290,6 +301,11 @@ void update()
 
         delta_time -= FIXED_TIMESTEP;
     }
+
+    // if (g_current_scene == g_levelC && g_current_scene->m_state.won)
+    // {
+    //     g_current_scene->m_state.won = true;
+    // }
 
     g_accumulator = delta_time;
 
@@ -332,7 +348,7 @@ void render()
     }
     if (g_current_scene->m_state.won)
     {
-        glm::vec3 text_position = glm::vec3(playerPosX - 7.0f, playerPosY, 0);
+        glm::vec3 text_position = glm::vec3(playerPosX - 2.0f, playerPosY, 0);
         Utility::draw_text(&g_shader_program, g_font_id, "YOU WON", 0.5, 0.01f, text_position);
     }
 

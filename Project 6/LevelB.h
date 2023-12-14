@@ -2,8 +2,7 @@
 
 class LevelB : public Scene {
 public:
-    int ENEMY_COUNT = 1;
-    int BULLET_COUNT = m_number_of_bullets;
+    int m_number_of_enemies = 6;
 
     ~LevelB();
 

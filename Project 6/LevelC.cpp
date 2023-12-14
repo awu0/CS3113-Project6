@@ -1,25 +1,39 @@
 #include "LevelC.h"
 #include "Utility.h"
 
-#define LEVEL_WIDTH 15
-#define LEVEL_HEIGHT 9
+#define LEVEL_WIDTH 25
+#define LEVEL_HEIGHT 22
 
 unsigned int LEVELC_DATA[] =
 {
-    11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-    11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-    11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-    11, 85,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 86,
-    11,101,  0,  0,  0, 20,  0,  0, 20,  0,  0,  0,  0,  0,102,
-    11, 20, 20, 20, 20, 36,  0,  0, 36, 20, 20, 20, 20, 36, 20,
-    11, 36, 36, 36, 36, 36,  0,  0, 36, 36, 36, 36, 36, 36, 36,
-    11, 36, 36, 36, 36, 36,  0,  0, 36, 36, 36, 36, 36, 36, 36,
-    11, 36, 36, 36, 36, 36,  0,  0, 36, 36, 36, 36, 36, 36, 36,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+    9, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0,86, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0,102, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 9,
+    9, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 9,
+    9, 0, 0,34, 0, 0, 2, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 9,
+    9, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,86, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,102, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 0,34, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 0,34, 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0,34, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0,34, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 2, 2, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
 };
 
 LevelC::~LevelC()
 {
     delete [] m_state.enemies;
+    delete [] m_state.bullets;
     delete    m_state.player;
     delete    m_state.map;
     Mix_FreeChunk(m_state.jump_sfx);
@@ -35,19 +49,19 @@ void LevelC::initialise()
 
     m_state.player = new Entity();
     m_state.player->set_entity_type(PLAYER);
-    m_state.player->set_position(glm::vec3(1.0f, 0.0f, 0.0f));
+    m_state.player->set_position(glm::vec3(10.0f, -5.0f, 0.0f));
     m_state.player->set_movement(glm::vec3(0.0f));
-    m_state.player->set_speed(2.5f);
+    m_state.player->set_speed(3.5f);
     m_state.player->set_acceleration(glm::vec3(0.0f, -9.81f, 0.0f));
     m_state.player->m_texture_id = Utility::load_texture("assets/catdog.png");
 
     // Walking
     m_state.player->m_walking[m_state.player->LEFT] = new int[3]{12, 13, 14};
     m_state.player->m_walking[m_state.player->RIGHT] = new int[3]{21, 22, 23};
-    m_state.player->m_walking[m_state.player->UP] = new int[3]{3, 4, 5};
-    // m_state.player->m_walking[m_state.player->DOWN] = new int[4]{0, 1, 2, 3};
+    m_state.player->m_walking[m_state.player->UP] = new int[3]{30, 31, 32};
+    m_state.player->m_walking[m_state.player->DOWN] = new int[3]{3, 4, 5};
 
-    m_state.player->m_animation_indices = m_state.player->m_walking[m_state.player->UP];
+    m_state.player->m_animation_indices = m_state.player->m_walking[m_state.player->DOWN];
     m_state.player->m_animation_time = 0.0f;
     m_state.player->m_animation_frames = 3;
     m_state.player->m_animation_index = 0;
@@ -63,16 +77,39 @@ void LevelC::initialise()
      Enemies' stuff */
     GLuint enemy_texture_id = Utility::load_texture("assets/enemy.jpg");
 
-    m_state.enemies = new Entity[ENEMY_COUNT];
-    m_state.enemies[0].set_entity_type(ENEMY);
-    m_state.enemies[0].set_ai_type(JUMPER);
-    m_state.enemies[0].set_ai_state(IDLE);
-    m_state.enemies[0].m_texture_id = enemy_texture_id;
-    m_state.enemies[0].set_position(glm::vec3(8.0f, 0.0f, 0.0f));
-    m_state.enemies[0].set_movement(glm::vec3(0.0f));
-    m_state.enemies[0].set_speed(1.0f);
-    m_state.enemies[0].set_acceleration(glm::vec3(0.0f, -9.81f, 0.0f));
-    m_state.enemies[0].m_jumping_power = 7.0f;
+    m_state.enemies = new Entity[m_number_of_enemies];
+
+    for (int i = 0; i < 3; i++) {
+        m_state.enemies[i].set_entity_type(ENEMY);
+        m_state.enemies[i].set_ai_type(STALKER);
+        m_state.enemies[i].set_ai_state(IDLE);
+        m_state.enemies[i].m_texture_id = enemy_texture_id;
+        m_state.enemies[i].set_position(glm::vec3(20.0f - i, 0.0f - i * 3, 0.0f));
+        m_state.enemies[i].set_movement(glm::vec3(0.0f));
+        float speed = (rand() % 100) / 100.0f * 2.6f;
+        if (speed < 1.7f)
+            speed = 1.7f;
+        m_state.enemies[i].set_speed(speed);
+        m_state.enemies[i].health = 200;
+    }
+
+    for (int i = 3; i < m_number_of_enemies; i++)
+    {
+        m_state.enemies[i].set_entity_type(ENEMY);
+        m_state.enemies[i].set_ai_type(STALKER);
+        m_state.enemies[i].set_ai_state(IDLE);
+        m_state.enemies[i].m_texture_id = enemy_texture_id;
+        m_state.enemies[i].set_position(glm::vec3(0.0f + i, 0.0f - i * 3, 0.0f));
+        m_state.enemies[i].set_movement(glm::vec3(0.0f));
+        float speed = (rand() % 100) / 100.0f * 2.6f;
+        if (speed < 1.7f)
+            speed = 1.7f;
+        m_state.enemies[i].set_speed(speed);
+        m_state.enemies[i].health = 200;
+    }
+
+    // keep 100 spaces for bullets
+    m_state.bullets = new Entity[m_number_of_bullets];
 
     /**
      BGM and SFX
@@ -91,15 +128,25 @@ void LevelC::initialise()
 
 void LevelC::update(float delta_time)
 {
-    if (m_state.gameover) {
-        do_gameover();
-        return;
+    // if (m_state.gameover) {
+    //     do_gameover();
+    //     return;
+    // }
+
+    m_state.player->update(delta_time, m_state.player, m_state.enemies, m_number_of_enemies, m_state.map);
+
+    for (int i = 0; i < m_number_of_enemies; i++)
+        m_state.enemies[i].update(delta_time, m_state.player, NULL, 0, m_state.map);
+
+    for (int i = 0; i < m_state.bullets_shot; i++)
+        m_state.bullets[i].update(delta_time, NULL, m_state.enemies, m_number_of_enemies, m_state.map);
+
+    bool all_dead = true;
+    for (int i = 0; i < m_number_of_enemies; i++) {
+        if (m_state.enemies[i].get_is_active()) all_dead = false;
     }
 
-    m_state.player->update(delta_time, m_state.player, m_state.enemies, ENEMY_COUNT, m_state.map);
-
-    for (int i = 0; i < ENEMY_COUNT; i++)
-        m_state.enemies[i].update(delta_time, m_state.player, NULL, 0, m_state.map);
+    if (all_dead) m_state.won = true;
 }
 
 void LevelC::render(ShaderProgram *program)
@@ -107,6 +154,21 @@ void LevelC::render(ShaderProgram *program)
     m_state.map->render(program);
     m_state.player->render(program);
 
-    for (int i = 0; i < ENEMY_COUNT; i++)
+    for (int i = 0; i < m_number_of_enemies; i++)
         m_state.enemies[i].render(program);
+
+    for (int i = 0; i < m_state.bullets_shot; i++)
+        m_state.bullets[i].render(program);
+}
+
+int LevelC::number_of_enemies_left()
+{
+    int count = 0;
+    for (int i = 0; i < m_number_of_enemies; i++)
+    {
+        if (m_state.enemies[i].get_is_active())
+            count++;
+    }
+
+    return count;
 }
