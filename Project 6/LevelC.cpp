@@ -13,9 +13,9 @@ unsigned int LEVELC_DATA[] =
     9, 0, 0, 0, 0, 0, 0, 0,86, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
     9, 0, 0, 0, 0, 0, 0, 0,102, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 9,
     9, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 9,
-    9, 0, 0,34, 0, 0, 2, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 9,
-    9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
-    9, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0,34, 0, 0, 2, 0, 0, 0, 0, 0, 0,34, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 9,
+    9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,34, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 9,
+    9, 0, 0, 0, 2, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 9,
     9, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 9,
     9, 0, 0,34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 9,
     9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,86, 0, 0, 0, 0, 0, 0,34, 0, 0, 0, 9,
@@ -51,7 +51,7 @@ void LevelC::initialise()
     m_state.player->set_entity_type(PLAYER);
     m_state.player->set_position(glm::vec3(10.0f, -5.0f, 0.0f));
     m_state.player->set_movement(glm::vec3(0.0f));
-    m_state.player->set_speed(3.5f);
+    m_state.player->set_speed(3.8f);
     m_state.player->set_acceleration(glm::vec3(0.0f, -9.81f, 0.0f));
     m_state.player->m_texture_id = Utility::load_texture("assets/catdog.png");
 
@@ -79,7 +79,7 @@ void LevelC::initialise()
 
     m_state.enemies = new Entity[m_number_of_enemies];
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
         m_state.enemies[i].set_entity_type(ENEMY);
         m_state.enemies[i].set_ai_type(STALKER);
         m_state.enemies[i].set_ai_state(IDLE);
@@ -87,13 +87,13 @@ void LevelC::initialise()
         m_state.enemies[i].set_position(glm::vec3(20.0f - i, 0.0f - i * 3, 0.0f));
         m_state.enemies[i].set_movement(glm::vec3(0.0f));
         float speed = (rand() % 100) / 100.0f * 2.6f;
-        if (speed < 1.7f)
-            speed = 1.7f;
+        if (speed < 1.3f)
+            speed += 1.3f;
         m_state.enemies[i].set_speed(speed);
-        m_state.enemies[i].health = 200;
+        m_state.enemies[i].health = 160;
     }
 
-    for (int i = 3; i < m_number_of_enemies; i++)
+    for (int i = 2; i < m_number_of_enemies; i++)
     {
         m_state.enemies[i].set_entity_type(ENEMY);
         m_state.enemies[i].set_ai_type(STALKER);
@@ -102,10 +102,10 @@ void LevelC::initialise()
         m_state.enemies[i].set_position(glm::vec3(0.0f + i, 0.0f - i * 3, 0.0f));
         m_state.enemies[i].set_movement(glm::vec3(0.0f));
         float speed = (rand() % 100) / 100.0f * 2.6f;
-        if (speed < 1.7f)
-            speed = 1.7f;
+        if (speed < 1.3f)
+            speed += 1.3f;
         m_state.enemies[i].set_speed(speed);
-        m_state.enemies[i].health = 200;
+        m_state.enemies[i].health = 160;
     }
 
     // keep 100 spaces for bullets

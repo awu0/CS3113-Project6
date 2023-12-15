@@ -80,7 +80,7 @@ float g_accumulator = 0.0f;
 
 bool g_is_colliding_bottom = false;
 
-float time_per_shot = 0.5f; // in seconds
+float time_per_shot = 0.20f; // in seconds
 float bullet_time_accumulated = 0.0f; // used to calculate time between the last shot
 bool can_shoot = true;
 
@@ -114,7 +114,7 @@ void createBullet() {
 
     g_current_scene->m_state.bullets[bullets_shot].set_movement(glm::vec3(x, y, 0.0f));
 
-    g_current_scene->m_state.bullets[bullets_shot].set_speed(8.0f);
+    g_current_scene->m_state.bullets[bullets_shot].set_speed(9.0f);
     g_current_scene->m_state.bullets[bullets_shot].m_texture_id = Utility::load_texture("assets/catdog.png");
 
     // Walking
@@ -267,7 +267,11 @@ void update()
 
     delta_time += g_accumulator;
 
-    bullet_time_accumulated += delta_time;
+    if (!can_shoot)
+    {
+        bullet_time_accumulated += delta_time;
+    }
+
     if (bullet_time_accumulated >= time_per_shot) {
         can_shoot = true;
         bullet_time_accumulated = 0.0f;

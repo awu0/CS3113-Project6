@@ -42,7 +42,7 @@ struct GameState
 class Scene {
 public:
     int m_number_of_enemies = 1;
-    int m_number_of_bullets = 120;
+    int m_number_of_bullets = 100;
 
     GameState m_state;
 

@@ -51,7 +51,7 @@ void LevelB::initialise()
     m_state.player->set_entity_type(PLAYER);
     m_state.player->set_position(glm::vec3(10.0f, -5.0f, 0.0f));
     m_state.player->set_movement(glm::vec3(0.0f));
-    m_state.player->set_speed(3.2f);
+    m_state.player->set_speed(3.5f);
     m_state.player->set_acceleration(glm::vec3(0.0f, -9.81f, 0.0f));
     m_state.player->m_texture_id = Utility::load_texture("assets/catdog.png");
 
@@ -88,7 +88,7 @@ void LevelB::initialise()
         m_state.enemies[i].set_movement(glm::vec3(0.0f));
         float speed = (rand() % 100) / 100.0f * 2.0f;
         if (speed < 1.0f)
-            speed = 1.0f;
+            speed += 1.0f;
         m_state.enemies[i].set_speed(speed);
         m_state.enemies[i].health = 150;
     }
@@ -103,7 +103,7 @@ void LevelB::initialise()
         m_state.enemies[i].set_movement(glm::vec3(0.0f));
         float speed = (rand() % 100) / 100.0f * 2.0f;
         if (speed < 1.0f)
-            speed = 1.0f;
+            speed += 1.0f;
         m_state.enemies[i].set_speed(speed);
         m_state.enemies[i].health = 150;
     }
